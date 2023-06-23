@@ -1,0 +1,7 @@
+{{#if blogs}}
+{{#each blogs as |blog|}}
+{{>blog-item}}
+{{/each}}
+{{else}}
+<h2>No blogs are in the database!</h2>
+{{/if}}

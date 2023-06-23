@@ -12,7 +12,7 @@ BUILD a CMS-style blog site similar to a Wordpress site, where developers can pu
 *  App follows the MVC paradigm in its architectural structure, 
 * Sequelize as the ORM, 
 * and the express-session npm package for authentication.
-* using Handlebars.js - INSTALLED
+* using Handlebars.js 
 
 ## User Story
 
