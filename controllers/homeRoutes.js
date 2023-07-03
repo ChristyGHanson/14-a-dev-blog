@@ -4,7 +4,7 @@ const { withAuth, withoutAuth } = require('../utils/auth');
 const querystring = require('querystring')
 const express = require('express');
 const sequelize = require('../config/connection');
-// needs to be updated every time we creat e anew handlebars page
+// needs to be updated every time we create a new handlebars page
 
 
 router.get('/', async (req, res) => {
@@ -22,8 +22,9 @@ router.get('/', async (req, res) => {
       }]
     });
 
+// .map works like a for loop
     const blogs = blogsRaw.map((blog) => {
-      blog.get({ plain: true })
+      return blog.get({ plain: true })
     })
 
     res.render('homepage',
@@ -53,7 +54,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
     const blogs = blogsRaw.map((blog) => {
-      blog.get({ plain: true })
+      return blog.get({ plain: true })
     })
     // dashboard refers to the name
     res.render('dashboard',
@@ -86,17 +87,18 @@ router.get('/create', withAuth, async (req, res) => {
 router.get('/blogs/:id', async (req, res) => {
   try {
     // if logged in and if the user id matches blog owner...
-    const blog = Blog.findByPk(req.params.id, {
+    const blog = await Blog.findByPk(req.params.id, {
       include: [{ model: User }, { model: Comment }]
     });
     //  compare blog.user_id to a logged in user. render edit blog page.
     if (req.session.logged_in && req.session.user_id == blog.user_id) {
       res.render('editBlog',
-        { logged_in: req.session.logged_in, blog });
+      // ... 
+        { logged_in: req.session.logged_in, ...blog });
     } else {
       // if not the owner, the user only gets to view the blog instead.
       res.render('viewBlog',
-        { logged_in: req.session.logged_in, blog });
+        { logged_in: req.session.logged_in, ...blog });
     }
   } catch (err) {
     res.status(500).json(err)
