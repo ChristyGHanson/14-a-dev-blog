@@ -93,7 +93,7 @@ router.get('/blogs/:id', async (req, res) => {
     //  compare blog.user_id to a logged in user. render edit blog page.
     if (req.session.logged_in && req.session.user_id == blog.user_id) {
       res.render('editBlog',
-      // ... 
+      // 
         { logged_in: req.session.logged_in, ...blog });
     } else {
       // if not the owner, the user only gets to view the blog instead.

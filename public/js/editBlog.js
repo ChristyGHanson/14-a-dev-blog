@@ -3,7 +3,7 @@
 const editFormHandler = async (event) => {
     event.preventDefault();
     console.log('Login Javascript Triggered')
-    const title = document.querySelector('#title-input').value.trim();
+    const title = document.querySelector('#title').value.trim();
     const body = document.querySelector('#body-input').value.trim();
 
     // const id stores the {{name}} id value from editBlog.handlebars. 

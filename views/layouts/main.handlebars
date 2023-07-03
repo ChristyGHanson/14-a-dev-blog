@@ -49,6 +49,10 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
 
+{{!-- If statement in handlebars. it runs the file path for logout.js --}}
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{/if}}
 
 </body>
 
