@@ -6,7 +6,7 @@
 * Authenticated with express-session npm package.
 
 ## CODE FROM SCRATCH
-BUILD a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts.
+This is a CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts.
 
 * You’ll build this site completely from scratch and deploy it to Heroku. 
 *  App follows the MVC paradigm in its architectural structure, 
