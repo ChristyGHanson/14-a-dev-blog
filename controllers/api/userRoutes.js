@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.get('/', async (req, res) => {
+    try {
+        const comment = await User.findAll({
+            include: [{ model: Comment }, { model: Blog }]
+        })
+        res.status(200).json(comment);
+    }
+    catch (err) {
+        res.json(err);
+    }
+});
+
+
 router.post('/', async (req, res) => {
     try {
         console.log('user info being sent to database')
@@ -16,6 +29,7 @@ router.post('/', async (req, res) => {
             res.status(200).json(userData);
         });
     } catch (err) {
+        // alert('Username is already in use!');
         res.json(err);
     }
 });

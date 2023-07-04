@@ -6,15 +6,17 @@
 <h4>No comments yet!</h4>
 {{/if}}
 
-{{!-- add button  --}}
-<button id="add-comment" style="visibility:visible" >Add Comment</button>
+{{!-- add button --}}
+{{#if logged_in}}
+<button id="add-comment" style="visibility:visible">Add Comment</button>
+{{/if}}
 {{!-- the form is hidden. when the button is clicked, it makes the form visible. --}}
 <form style="visibility:hidden" id="comment-form">
-  <div class="form-group" >
+  <div class="form-group">
     <label for="content">Enter a comment!</label>
     <textarea class="form-control" id="content" rows="3"></textarea>
     {{!-- the submit button will submit the content --}}
-      <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
 <script src="/js/comments.js"></script>

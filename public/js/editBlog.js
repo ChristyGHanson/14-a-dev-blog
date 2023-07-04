@@ -9,7 +9,7 @@ const editFormHandler = async (event) => {
     // const id stores the {{name}} id value from editBlog.handlebars. 
     // document refers to the html page.
     //querySelector finds a specific object and element on the page.
-const id= document.querySelector('#title-input').name;
+    const id = document.querySelector('#title').getAttribute("name");
 
     if (title && body) {
         const response = await fetch(`/api/blog/${id}`, {

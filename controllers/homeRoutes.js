@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
       }]
     });
 
-// .map works like a for loop
+    // .map works like a for loop
     const blogs = blogsRaw.map((blog) => {
       return blog.get({ plain: true })
     })
@@ -84,16 +84,17 @@ router.get('/create', withAuth, async (req, res) => {
   }
 });
 
-router.get('/blogs/:id', async (req, res) => {
+router.get('/blog/:id', async (req, res) => {
   try {
     // if logged in and if the user id matches blog owner...
-    const blog = await Blog.findByPk(req.params.id, {
+    const rawBlog = await Blog.findByPk(req.params.id, {
       include: [{ model: User }, { model: Comment }]
     });
+    const blog = rawBlog.get({ plain: true });
     //  compare blog.user_id to a logged in user. render edit blog page.
     if (req.session.logged_in && req.session.user_id == blog.user_id) {
       res.render('editBlog',
-      // 
+        // 
         { logged_in: req.session.logged_in, ...blog });
     } else {
       // if not the owner, the user only gets to view the blog instead.

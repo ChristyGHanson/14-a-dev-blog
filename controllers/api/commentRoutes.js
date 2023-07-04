@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         // get comment and user it belongs to, and the blog it belongs to.
-        const comment = await Comment.findByPk(req.params.id,{
+        const comment = await Comment.findByPk(req.params.id, {
             include: [{ model: User }, { model: Blog }]
         })
         res.status(200).json(comment);
@@ -40,7 +40,6 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// Copy paste 
 // router get by for the id, put, and delete 
 // find by pk 
 // reference Module 13 routes -- categoryRoutes.js file!
@@ -48,7 +47,7 @@ router.post('/', async (req, res) => {
     try {
         // console.log(req.body)
         const newComment = await Comment.create({
-            blog_id: req.body.id,
+            blog_id: req.body.blog_id,
             content: req.body.content,
             user_id: req.session.user_id,
         })
@@ -70,11 +69,11 @@ router.put('/:id', async (req, res) => {
             content: req.body.content,
             user_id: req.session.user_id,
         },
-        {
-            where: {
-                id: req.params.id
-            }
-        })
+            {
+                where: {
+                    id: req.params.id
+                }
+            })
 
         res.status(200).json(newComment);
     }
